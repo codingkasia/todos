@@ -60,7 +60,9 @@ end
 
 group :test do 
   gem 'capybara', '~> 2.8'
+  gem "database_cleaner"
 end
+
 gem 'rake', '~> 11.0'
 
 end
