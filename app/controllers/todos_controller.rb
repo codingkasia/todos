@@ -1,4 +1,6 @@
 class TodosController < ApplicationController
+    before_action :authenticate
+    
     def index
         @todos = Todo.all
     end
@@ -13,6 +15,16 @@ class TodosController < ApplicationController
     end
 
     private
+
+    def authenticate
+        if !signed_in?
+            redirect_to new_session_path
+        end
+    end
+
+    def signed_in?
+        session[:current_email].present?
+    end
 
     def todo_params 
         params.require(:todo).permit(:title)
